@@ -1,0 +1,45 @@
+﻿@model IEnumerable<InspectorLogWebApplication.Models.Inspector>
+@{
+	ViewData["Title"] = "Инспектора";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Инспектора</h2>
+
+<table class="table">
+	<thead>
+		<tr>
+			<th>
+				Фамилия
+			</th>
+			<th>
+				Имя
+			</th>
+			<th>
+				Отчество
+			</th>
+			<th>
+				Подразделение
+			</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var item in Model)
+		{
+			<tr>
+				<td>
+					@Html.DisplayFor(modelItem => item.LastName)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.FirstName)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.MiddleName)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Subdivision)
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>

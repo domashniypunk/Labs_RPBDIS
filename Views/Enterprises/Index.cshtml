@@ -1,0 +1,89 @@
+﻿@model IEnumerable<InspectorLogWebApplication.Models.Enterprise>
+
+@{
+    ViewData["Title"] = "Предприятия";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Список предприятий</h1>
+
+@using (Html.BeginForm("Index", "Enterprises", FormMethod.Post))
+{
+    <fieldset>
+        Фамилия начальника: @Html.TextBox("searchBossLastName", "")
+        Адрес: @Html.TextBox("searchAdress", "")
+        <input type="submit" value="Найти" />
+    </fieldset>
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewBag.Name">
+                    @Html.DisplayNameFor(model => model.Name)
+                </a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewBag.Adress">
+                    @Html.DisplayNameFor(model => model.Adress)
+                </a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewBag.BossFirstName">
+                    @Html.DisplayNameFor(model => model.BossFirstName)
+                </a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewBag.BossLastName">
+                    @Html.DisplayNameFor(model => model.BossLastName)
+                </a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewBag.BossMiddleName">
+                    @Html.DisplayNameFor(model => model.BossMiddleName)
+                </a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewBag.BossPhoneNumber">
+                    @Html.DisplayNameFor(model => model.BossPhoneNumber)
+                </a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewBag.OwnershipType">
+                    @Html.DisplayNameFor(model => model.OwnershipType)
+                </a>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Adress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BossFirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BossLastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BossMiddleName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BossPhoneNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OwnershipType.Name)
+            </td>
+            <td>
+                <a asp-action="Details" asp-route-id="@item.Id">Подробности</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
